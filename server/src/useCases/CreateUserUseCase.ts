@@ -4,8 +4,8 @@ import { AppError } from '@/errors/AppError';
 import { ICreateUserDTO } from '@/dtos/ICreateUserDTO';
 import { IUserResponseDTO } from '@/dtos/IUserResponseDTO';
 import { IUsersRepository } from '@/repositories/models/IUsersRepository';
-import { IHashProvider } from '@/providers/models/IHashProvider';
-import { BCryptHashProvider } from '@/providers/implementations/BCryptHashProvider';
+import { IHashProvider } from '@/providers/HashProvider/models/IHashProvider';
+import { BCryptHashProvider } from '@/providers/HashProvider/implementations/BCryptHashProvider';
 
 export class CreateUserUseCase {
   private userRepository: IUsersRepository;

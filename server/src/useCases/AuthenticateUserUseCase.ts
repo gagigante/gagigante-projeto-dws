@@ -1,9 +1,9 @@
 import { sign } from 'jsonwebtoken';
 
 import { UsersRepository } from '@/repositories/implementations/UsersRepository';
-import { BCryptHashProvider } from '@/providers/implementations/BCryptHashProvider';
+import { BCryptHashProvider } from '@/providers/HashProvider/implementations/BCryptHashProvider';
 import { IUsersRepository } from '@/repositories/models/IUsersRepository';
-import { IHashProvider } from '@/providers/models/IHashProvider';
+import { IHashProvider } from '@/providers/HashProvider/models/IHashProvider';
 import { authConfig } from '@/config/auth';
 import { AppError } from '@/errors/AppError';
 import { UserMap } from '@/mapper/UserMap';
