@@ -22,4 +22,6 @@ userRouter.post(
   userController.create,
 );
 
+userRouter.delete('/', ensureAuthenticated, userController.destroy);
+
 export { userRouter };

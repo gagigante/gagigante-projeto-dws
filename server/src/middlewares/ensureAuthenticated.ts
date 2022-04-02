@@ -7,7 +7,7 @@ import { AppError } from '@/errors/AppError';
 interface ITokenPayload {
   iat: number;
   exp: number;
-  sub: string;
+  subject: number;
 }
 
 export function ensureAuthenticated(
@@ -26,10 +26,10 @@ export function ensureAuthenticated(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub } = decoded as ITokenPayload;
+    const { subject } = decoded as ITokenPayload;
 
     req.user = {
-      id: sub,
+      id: subject,
     };
 
     return next();
