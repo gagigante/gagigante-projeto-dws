@@ -1,20 +1,8 @@
 import { DataSource } from 'typeorm';
 
-export async function createDatabaseConnection() {
-  const appDataSource = new DataSource({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'user',
-    password: 'pass',
-    database: 'app-dws',
-    synchronize: true,
-    logging: false,
-    entities: ['src/entities/*.ts'],
-    migrations: ['src/database/migrations/*.ts'],
-    subscribers: [],
-  });
+import { appDataSource } from './data-source';
 
+export async function createDatabaseConnection() {
   try {
     await appDataSource.initialize();
   } catch (error) {

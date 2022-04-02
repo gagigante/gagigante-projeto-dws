@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import 'reflect-metadata';
 import 'express-async-errors';
 
@@ -13,8 +14,8 @@ export const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 app.use(routes);
+app.use(errors());
 
 app.use((err: Error, req: Request, res: Response, nextFunction: NextFunction) => {
   if (err instanceof AppError) {

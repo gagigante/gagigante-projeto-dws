@@ -7,7 +7,7 @@ import { cotacaoRouter } from './cotacaoRoutes';
 const routes = Router();
 
 routes.use('/session', sessionRouter);
-routes.use('/usuario', userRouter);
-routes.use('/cotacao', cotacaoRouter);
+routes.use('/usuarios', userRouter);
+routes.use('/cotacoes', cotacaoRouter);
 
 export { routes };
