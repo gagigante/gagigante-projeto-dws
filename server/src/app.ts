@@ -1,8 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { errors } from 'celebrate';
-import 'reflect-metadata';
-import 'express-async-errors';
 
 import { routes } from './routes';
 import { AppError } from './errors/AppError';
