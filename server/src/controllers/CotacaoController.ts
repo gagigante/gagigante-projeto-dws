@@ -5,6 +5,7 @@ import { ProcessCotacaoUseCase } from '@/useCases/ProcessCotacaoUseCase';
 import { ICreateCotacaoDTO } from '@/dtos/ICreateCotacaoDTO';
 import { ISaveCotacaoDTO } from '@/dtos/ISaveCotacaoDTO';
 import { CreateCotacaoUseCase } from '@/useCases/CreateCotacaoUseCase';
+import { DeleteCotacaoUseCase } from '@/useCases/DeleteCotacaoUseCase';
 
 export class CotacaoController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -48,5 +49,16 @@ export class CotacaoController {
     });
 
     return response.json(cotacao);
+  }
+
+  public async destroy(request: Request, response: Response): Promise<Response> {
+    const { id: userId } = request.user;
+    const { id: cotacaoId } = request.params;
+
+    const deleteCotacaoUseCase = new DeleteCotacaoUseCase();
+
+    await deleteCotacaoUseCase.execute(Number(cotacaoId), userId);
+
+    return response.status(200).send();
   }
 }

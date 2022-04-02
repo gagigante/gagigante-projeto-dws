@@ -37,4 +37,6 @@ cotacaoRouter.post(
   cotacaoController.process
 );
 
+cotacaoRouter.delete('/:id', ensureAuthenticated, cotacaoController.destroy);
+
 export { cotacaoRouter };

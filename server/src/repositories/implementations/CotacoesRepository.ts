@@ -3,13 +3,18 @@ import { Repository } from 'typeorm';
 import { appDataSource } from '@/database/data-source';
 import { ICotacoesRepository } from '../models/ICotacoesRepository';
 import { Cotacao } from '@/entities/Cotacao';
-import { ICreateCotacaoDTO } from '@/dtos/ICreateCotacaoDTO';
 
 export class CotacoesRepository implements ICotacoesRepository {
   private repository: Repository<Cotacao>;
 
   constructor() {
     this.repository = appDataSource.getRepository(Cotacao);
+  }
+
+  public async findById(id: number): Promise<Cotacao | undefined> {
+    const user = await this.repository.findOneBy({ id });
+
+    return user;
   }
 
   public async findAllByUserId(userId: number): Promise<Cotacao[] | undefined> {
