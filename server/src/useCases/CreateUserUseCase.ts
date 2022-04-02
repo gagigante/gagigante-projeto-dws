@@ -4,12 +4,17 @@ import { AppError } from '@/errors/AppError';
 import { ICreateUserDTO } from '@/dtos/ICreateUserDTO';
 import { IUserResponseDTO } from '@/dtos/IUserResponseDTO';
 import { IUsersRepository } from '@/repositories/models/IUsersRepository';
+import { IHashProvider } from '@/providers/models/IHashProvider';
+import { BCryptHashProvider } from '@/providers/implementations/BCryptHashProvider';
 
 export class CreateUserUseCase {
   private userRepository: IUsersRepository;
 
+  private hashProvider: IHashProvider;
+
   constructor() {
     this.userRepository = new UsersRepository();
+    this.hashProvider = new BCryptHashProvider();
   }
 
   async execute({ name, email, password }: ICreateUserDTO): Promise<IUserResponseDTO> {
@@ -19,7 +24,9 @@ export class CreateUserUseCase {
       throw new AppError("User already exists");
     }
 
-    const newUser = this.userRepository.create({ name, email, password });
+    const hashedPassword = await this.hashProvider.generateHash(password);
+
+    const newUser = this.userRepository.create({ name, email, password: hashedPassword });
 
     await this.userRepository.save(newUser); 
 

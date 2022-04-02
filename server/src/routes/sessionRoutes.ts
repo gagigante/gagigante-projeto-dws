@@ -1,10 +1,21 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
+
+import { SessionController } from '@/controllers/SessionController';
+
+const sessionController = new SessionController();
 
 const sessionRouter = Router();
 
-sessionRouter.post('/', (request: Request, response: Response) => {
-  return response.status(200).json({ hello: 'world' });
-});
-
+sessionRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  sessionController.create
+);
 
 export { sessionRouter };

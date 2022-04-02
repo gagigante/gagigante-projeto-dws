@@ -12,7 +12,7 @@ export class UsersRepository implements IUsersRepository {
     this.repository = appDataSource.getRepository(User);
   }
 
-  public async findById(id: string): Promise<User | undefined> {
+  public async findById(id: number): Promise<User | undefined> {
     const user = await this.repository.findOneBy({ id });
 
     return user;
@@ -36,9 +36,7 @@ export class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async delete(id: string): Promise<void> {
+  public async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }
 }
-
-export default UsersRepository;

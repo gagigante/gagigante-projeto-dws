@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('increment')
-  id: string;
+  id: number;
 
   @Column()
   name: string;
