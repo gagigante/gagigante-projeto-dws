@@ -5,6 +5,9 @@ import 'express-async-errors';
 
 import { routes } from './routes';
 import { AppError } from './errors/AppError';
+import { createDatabaseConnection } from './database';
+
+createDatabaseConnection()
 
 export const app = express();
 
