@@ -17,12 +17,12 @@ export class Cotacao {
   @Column()
   productName: string;
 
-  @Column()
+  @Column('float')
   productPrice: number;
 
   @Column()
   paymentType: 'mensal' | 'trimestral' | 'anual';
 
-  @Column()
+  @Column('float')
   portionPrice: number;
 }
