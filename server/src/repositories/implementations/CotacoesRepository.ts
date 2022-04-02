@@ -22,7 +22,7 @@ export class CotacoesRepository implements ICotacoesRepository {
     return cotacoes;
   }
 
-  public create(data: ICreateCotacaoDTO): Cotacao {
+  public create(data: Omit<Cotacao, 'id' | 'user'>): Cotacao {
 
     const cotacao = this.repository.create(data);
 
