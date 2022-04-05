@@ -1,5 +1,3 @@
-import { DataSource } from 'typeorm';
-
 import { appDataSource } from './data-source';
 
 export async function createDatabaseConnection() {

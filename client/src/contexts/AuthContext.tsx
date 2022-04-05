@@ -44,7 +44,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<AuthState>({} as AuthState)
 
   useEffect(() => {
-    async function loadStoragedData(): Promise<void> {
+    function loadStoragedData() {
       const user = localStorage.getItem('user')
       const token = localStorage.getItem('token')
 
